@@ -1,6 +1,12 @@
 # 🃏 CardApp 
 
-**CardApp** is a lightweight and engaging quiz application built with **Jetpack Compose**. Designed to be simple, intuitive, and fun, it allows users to test their knowledge with true/false questions, get immediate feedback, and track their score.
+**CardApp** is a lightweight and engaging quiz application built with **Jetpack Compose**. Designed to be simple, intuitive, and fun, it allows users to test their knowledge with true/false questions, get immediate feedback, and track their score. 
+
+CardApp makes use of GitHub Actions to ensure it buildss with each feature change.
+
+---
+
+## 🎥 YouTube Link
 
 ---
 
