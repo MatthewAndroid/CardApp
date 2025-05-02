@@ -46,7 +46,7 @@ fun CardApp() {
             QuestionScreen(navController, quizViewModel)
         }
         composable("score") {
-            ScoreScreen()
+            ScoreScreen(navController, quizViewModel)
         }
     }
 }
