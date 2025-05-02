@@ -31,7 +31,7 @@ fun ReviewScreen(navController: NavController, viewModel: QuizViewModel) {
             Text(
                 text = "Review Your Answers",
                 fontSize = 24.sp,
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(top = 16.dp, bottom = 16.dp)
             )
         }
 
@@ -53,7 +53,7 @@ fun ReviewScreen(navController: NavController, viewModel: QuizViewModel) {
                     Text(text = "Correct Answer: ${if (correctAnswer) "True" else "False"}")
                     Text(
                         text = if (isCorrect) "Correct!" else "Incorrect",
-                        color = if (isCorrect) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
+                        color = if (isCorrect) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
                     )
                 }
             }

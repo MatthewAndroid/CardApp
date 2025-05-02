@@ -1,5 +1,6 @@
 package com.example.cardapp
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -66,7 +67,9 @@ fun QuestionScreen(navController: NavController, viewModel: QuizViewModel) {
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     Button(
-                        onClick = { viewModel.answerQuestion(true) },
+                        onClick = {
+                            Log.d("QuestionScreen", "True button press")
+                            viewModel.answerQuestion(true) },
                         enabled = !showFeedback,
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primary
@@ -76,7 +79,9 @@ fun QuestionScreen(navController: NavController, viewModel: QuizViewModel) {
                     }
 
                     Button(
-                        onClick = { viewModel.answerQuestion(false) },
+                        onClick = {
+                            Log.d("QuestionScreen", "False button press")
+                            viewModel.answerQuestion(false) },
                         enabled = !showFeedback,
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.primary
@@ -119,7 +124,6 @@ fun QuestionScreen(navController: NavController, viewModel: QuizViewModel) {
 
 // viewModel to manage the state of the quiz
 class QuizViewModel {
-    // parallel arrays for questions and answers
     private val questions = arrayOf(
         "Nelson Mandela was the president in 1994",
         "The Great Wall of China is visible from space",
@@ -131,16 +135,14 @@ class QuizViewModel {
 
     var currentQuestionIndex by mutableStateOf(0)
     var currentQuestion by mutableStateOf(questions[0])
-    var score by mutableStateOf(0) //gonna handle this in repory
+    var score by mutableStateOf(0)
     var showFeedback by mutableStateOf(false)
     var feedbackMessage by mutableStateOf("")
-    val userAnswers = mutableStateListOf<Pair<String, Boolean>>() // Observable list
+    val userAnswers = mutableStateListOf<Pair<String, Boolean>>()
 
-
-    // Aaswers the current question
     fun answerQuestion(userAnswer: Boolean) {
         val correctAnswer = answers[currentQuestionIndex]
-        userAnswers.add(Pair(questions[currentQuestionIndex], userAnswer)) // to store answer
+        userAnswers.add(Pair(questions[currentQuestionIndex], userAnswer))
         if (userAnswer == correctAnswer) {
             score++
             feedbackMessage = "Correct!"
@@ -148,14 +150,28 @@ class QuizViewModel {
             feedbackMessage = "Incorrect!"
         }
         showFeedback = true
+        //checking user answert and correct answer if they work together
+        Log.d("QuizViewModel", "Answered Question: $currentQuestion, User Answer: $userAnswer, Correct: $correctAnswer")
     }
 
-    // loads the next question
     fun loadNextQuestion() {
         if (currentQuestionIndex < questions.size - 1) {
             currentQuestionIndex++
             currentQuestion = questions[currentQuestionIndex]
             showFeedback = false
+            Log.d("QuizViewModel", "Loaded Next Question: $currentQuestion")
+        } else {
+            Log.d("QuizViewModel", "No more questions. Quiz completed.")
         }
+    }
+
+    fun resetQuiz() {
+        currentQuestionIndex = 0
+        currentQuestion = questions[0]
+        score = 0
+        showFeedback = false
+        feedbackMessage = ""
+        userAnswers.clear()
+        Log.d("QuizViewModel", "Quiz reset.")
     }
 }

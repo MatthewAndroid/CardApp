@@ -62,12 +62,14 @@ fun ScoreScreen(navController: NavController, viewModel: QuizViewModel) {
 
         Button(
             // back to welcom sscreen
-            onClick = { navController.popBackStack(route = "welcome", inclusive = false) },
+            onClick = {
+                viewModel.resetQuiz()
+                navController.popBackStack(route = "welcome", inclusive = false) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp)
         ) {
-            Text(text = "Exit")
+            Text(text = "Exit and Reset")
         }
     }
 }
