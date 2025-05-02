@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.setValue
 
 @Composable
@@ -126,17 +127,20 @@ class QuizViewModel {
         "The Pacific Ocean is the largest ocean on Earth",
         "The human body has 206 bones"
     )
-    private val answers = booleanArrayOf(true, false, false, true, true)
+    val answers = booleanArrayOf(true, false, false, true, true)
 
     var currentQuestionIndex by mutableStateOf(0)
     var currentQuestion by mutableStateOf(questions[0])
     var score by mutableStateOf(0) //gonna handle this in repory
     var showFeedback by mutableStateOf(false)
     var feedbackMessage by mutableStateOf("")
+    val userAnswers = mutableStateListOf<Pair<String, Boolean>>() // Observable list
+
 
     // Aaswers the current question
     fun answerQuestion(userAnswer: Boolean) {
         val correctAnswer = answers[currentQuestionIndex]
+        userAnswers.add(Pair(questions[currentQuestionIndex], userAnswer)) // to store answer
         if (userAnswer == correctAnswer) {
             score++
             feedbackMessage = "Correct!"

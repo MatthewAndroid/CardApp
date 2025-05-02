@@ -51,7 +51,7 @@ fun ScoreScreen(navController: NavController, viewModel: QuizViewModel) {
 
         Button(
             // gonna have to figute out how to review questions
-            onClick = { navController.navigate("welcome") },
+            onClick = { navController.navigate("review") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp)

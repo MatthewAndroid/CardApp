@@ -25,7 +25,7 @@ fun WelcomeScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Flashcard Quiz App",
+            text = "CardApp",
             fontSize = 24.sp,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(bottom = 16.dp)

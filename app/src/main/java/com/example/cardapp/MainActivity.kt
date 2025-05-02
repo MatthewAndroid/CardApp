@@ -48,5 +48,8 @@ fun CardApp() {
         composable("score") {
             ScoreScreen(navController, quizViewModel)
         }
+        composable("review") {
+            ReviewScreen(navController, quizViewModel)
+        }
     }
 }
