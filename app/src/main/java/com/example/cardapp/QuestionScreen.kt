@@ -149,6 +149,7 @@ class QuizViewModel {
         } else {
             feedbackMessage = "Incorrect!"
         }
+        // disable buttons after answering because states are de[endent on the question
         showFeedback = true
         //checking user answert and correct answer if they work together
         Log.d("QuizViewModel", "Answered Question: $currentQuestion, User Answer: $userAnswer, Correct: $correctAnswer")
