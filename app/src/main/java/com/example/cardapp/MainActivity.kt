@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -32,16 +33,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-//Handles navigation between screens
+//handles navigation between screens
 fun CardApp() {
     val navController = rememberNavController()
+    val quizViewModel = remember { QuizViewModel() } //creates instance of the quizViewModel !!
 
     NavHost(navController = navController, startDestination = "welcome") {
         composable("welcome") {
             WelcomeScreen(navController)
         }
         composable("question") {
-            QuestionScreen()
+            QuestionScreen(navController, quizViewModel)
         }
         composable("score") {
             ScoreScreen()
